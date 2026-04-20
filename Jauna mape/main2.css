@@ -1,5 +1,6 @@
 
 
+
 /* Nav lidz galam pabeigts */
 
 
@@ -26,16 +27,14 @@ body {
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-
 header {
     background: white;
     padding: 20px 0;
-    border-bottom: 1px solid #ddd;
 }
 
 .header-content {
@@ -66,7 +65,7 @@ nav ul li a {
     transition: color 0.3s; 
 }
 
-nav ul li a:hover, nav ul li a.active {
+nav ul li a:hover, nav ul li a.active {       /* nozime ka atradas home*/
     color: var(--primary);
 }
 
@@ -76,6 +75,7 @@ nav ul li a:hover, nav ul li a.active {
     height: 100%;
     object-fit: cover;
 }
+
 .hero {
     height: 500px;
     position: relative;
@@ -93,6 +93,7 @@ nav ul li a:hover, nav ul li a.active {
     z-index: 2;
 }
 
+
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -103,7 +104,7 @@ nav ul li a:hover, nav ul li a.active {
     background: var(--dark-mauve);
     color: white;
     padding: 12px 30px;
-    text-decoration: none;
+    text-decoration: none;    /* PODZCERKNUTOE*/
     margin-top: 20px;
     transition: transform 0.2s, background 0.3s; 
 }
@@ -118,14 +119,14 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 .products-section h2 {
-    border-bottom: 2px solid var(--bg-light);
+    border-bottom: 2px solid var(--bg-light); /* linija*/
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 2fr);
     gap: 20px;
 }
 
@@ -133,12 +134,15 @@ nav ul li a:hover, nav ul li a.active {
     background: white;
     padding: 15px;
     text-align: center;
-    border: 1px solid #eee;
+    border: 1px solid #983b3b; 
+    transition:  0.3s;
+}
+.product-card:hover {
+    transform: scale(1.05);
 }
 .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
 .product-image {
@@ -152,8 +156,8 @@ nav ul li a:hover, nav ul li a.active {
 
 .old-price {
     text-decoration: line-through;
-    color: #888;
-    font-size: 0.9rem;
+    color: #1d1b1b;
+    font-size: 0.9rem;  /* yteksta izmersS*/
 }
 
 .new-price {
@@ -208,8 +212,10 @@ footer {
 }
 
 .footer-bottom {
-    display: flex;
     justify-content: space-between;
     border-top: 1px solid #ccc;         /* Es izdariju liniju fotera */
     padding-top: 20px;
+}
+.footer-right {
+    text-align: right;
 }
