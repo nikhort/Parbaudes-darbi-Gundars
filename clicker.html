@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mans Projekts</title>
+    <script src="scripts2.js"></script>
+</head>
+
+<body>
+    <h1 id="myId">Tap to start!</h1>
+    <img id="btn" src="mops.png" width="300">
+    <button id="upgradeBtn">Upgrade</button>
+
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: -150px; margin-right: 1050px;">
+    <img src="automopsis.png" width="150" style="margin-bottom: 8px; -webkit-user-drag: none;">
+    <span id="autoSpeed" style="font-family: 'Arial Black'; color: #5E1608; font-size: 16px; margin-bottom: 2px;">0 /s</span>
+    <div id="autoBtn">
+        <span id="autoCost">Upgrade (Cena: 100)</span>
+    </div>
+
+</div>
+</body>
+
+<style>
+    #myId {
+        /* Krāsas un fonts */
+        color: #5E1608;
+        font-size: 64px;
+        font-weight: 900;
+        font-family: 'Arial Black';
+        
+        /* Prozracnij effects*/
+        background: rgba(255, 255, 255, 0.9);
+        border: 4px solid #5E1608;
+
+        /* Ģeometrija */
+        padding: 20px 60px;
+        border-radius: 100px; 
+        min-width: 180px;
+        text-align: center;
+    }
+    
+    h1 {
+        color: #5E1608;
+        text-shadow: 2px 2px 0px rgb(203, 168, 168); /* tenj teksta */
+    }
+
+    #btn {
+        cursor: pointer;
+        transition: transform 0.1s;
+        -webkit-user-drag: none; /* nelzja tenut kartinku */
+    }
+
+    #btn:active {   
+        transform: scale(0.95); /* Mopsis saspiežas */
+    }
+    
+    #upgradeBtn, #autoBtn {
+        /* Krāsas un fonts */
+        color: #5E1608;
+        font-size: 24px;
+        font-weight: 900;
+        font-family: 'Arial Black';
+        letter-spacing: 2px;
+        
+        /* Rāmīša pamats (saskan ar punktu rāmīti) */
+        background: rgba(255, 255, 255, 0.85);
+        border: 4px solid #5E1608;
+        padding: 10px 10px;
+        border-radius: 100px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease;
+    }
+
+    /* hover */
+    #upgradeBtn:hover, #autoBtn:hover {
+        background: rgba(255, 255, 255, 0.9); /* Исправлена запятая на точку */
+        transform: translateY(-2px);    
+    }
+    body {
+        background-image: url(fonmops.png);
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;  
+    }
+</style>
+
+<script>
+    let amount = 0;
+    let bonus = 1;
+    let upgrade = 25;
+    let autoBonus = 0;
+    let autoPrice = 100; 
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Находим все элементы на странице после её загрузки
+        const el = document.getElementById("myId");
+        const btn = document.getElementById("btn");
+        const upgradeBtn = document.getElementById("upgradeBtn");
+        const autoBtn = document.getElementById("autoBtn");
+
+        // Клик по самому мопсу
+        btn.addEventListener("click", () => {
+            amount += bonus;
+            el.innerHTML = amount;
+            el.style.color = "#5E1608";
+        });
+
+        // Покупка обычного апгрейда (клик)
+        upgradeBtn.addEventListener("click", () => {
+            if (amount >= upgrade) {
+                amount -= upgrade;
+                upgrade *= 2;
+                bonus += 1;
+                el.innerHTML = amount;
+                upgradeBtn.innerHTML = "Upgrade (Cena: " + upgrade + ")";
+            } else {
+                alert("Tev nepietiek punktu! Vajag vismaz " + upgrade);
+            }
+        });
+
+        // AFK Mopsis
+        // AFK Mopsis
+    autoBtn.addEventListener("click", () => {
+        if (amount >= autoPrice) {
+            amount -= autoPrice;       
+            autoBonus += 1;            
+            autoPrice *= 2;            
+            
+            el.innerHTML = amount;
+            
+            // Изменено здесь: текст теперь обновляется полностью и корректно
+            document.getElementById("autoCost").innerHTML = "Upgrade (Cena: " + autoPrice + ")";
+            document.getElementById("autoSpeed").innerHTML = autoBonus + " /s";
+        } else {
+            alert("Vajag vismaz " + autoPrice + " punktus!");
+        }
+    });
+        
+        // kazduju sekundu
+
+        setInterval(() => {
+            if (autoBonus > 0) {
+                amount += autoBonus;
+                el.innerHTML = amount; // Uzreiz parāda jauno summu
+            }
+        }, 1000); // 1000 milisekundes = 1 sekunde
+    });
+</script>
+</html>
