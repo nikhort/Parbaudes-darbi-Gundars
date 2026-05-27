@@ -24,7 +24,6 @@
 
 <style>
     #myId {
-        /* Krāsas un fonts */
         color: #5E1608;
         font-size: 64px;
         font-weight: 900;
@@ -34,7 +33,6 @@
         background: rgba(255, 255, 255, 0.9);
         border: 4px solid #5E1608;
 
-        /* Ģeometrija */
         padding: 20px 60px;
         border-radius: 100px; 
         min-width: 180px;
@@ -53,18 +51,15 @@
     }
 
     #btn:active {   
-        transform: scale(0.95); /* Mopsis saspiežas */
+        transform: scale(0.95); /* Mopsis nazimaetsja */
     }
     
     #upgradeBtn, #autoBtn {
-        /* Krāsas un fonts */
         color: #5E1608;
         font-size: 24px;
         font-weight: 900;
         font-family: 'Arial Black';
         letter-spacing: 2px;
-        
-        /* Rāmīša pamats (saskan ar punktu rāmīti) */
         background: rgba(255, 255, 255, 0.85);
         border: 4px solid #5E1608;
         padding: 10px 10px;
@@ -74,9 +69,8 @@
         transition: all 0.2s ease;
     }
 
-    /* hover */
     #upgradeBtn:hover, #autoBtn:hover {
-        background: rgba(255, 255, 255, 0.9); /* Исправлена запятая на точку */
+        background: rgba(255, 255, 255, 0.9); 
         transform: translateY(-2px);    
     }
     body {
@@ -94,31 +88,30 @@
 
 <script>
     let amount = 0;
-    let bonus = 1;
-    let upgrade = 25;
+    let bonus = 2;
+    let upgrade = 50;
     let autoBonus = 0;
-    let autoPrice = 100; 
+    let autoPrice = 100;
 
     document.addEventListener("DOMContentLoaded", () => {
-        // Находим все элементы на странице после её загрузки
+        /* nahodit vse elementi posle zagruzki */
         const el = document.getElementById("myId");
         const btn = document.getElementById("btn");
         const upgradeBtn = document.getElementById("upgradeBtn");
         const autoBtn = document.getElementById("autoBtn");
 
-        // Клик по самому мопсу
         btn.addEventListener("click", () => {
             amount += bonus;
             el.innerHTML = amount;
             el.style.color = "#5E1608";
         });
 
-        // Покупка обычного апгрейда (клик)
+        /* upgrade */
         upgradeBtn.addEventListener("click", () => {
             if (amount >= upgrade) {
                 amount -= upgrade;
                 upgrade *= 2;
-                bonus += 1;
+                bonus += 5;
                 el.innerHTML = amount;
                 upgradeBtn.innerHTML = "Upgrade (Cena: " + upgrade + ")";
             } else {
@@ -126,17 +119,14 @@
             }
         });
 
-        // AFK Mopsis
-        // AFK Mopsis
     autoBtn.addEventListener("click", () => {
         if (amount >= autoPrice) {
             amount -= autoPrice;       
-            autoBonus += 1;            
+            autoBonus += 10;            
             autoPrice *= 2;            
             
             el.innerHTML = amount;
             
-            // Изменено здесь: текст теперь обновляется полностью и корректно
             document.getElementById("autoCost").innerHTML = "Upgrade (Cena: " + autoPrice + ")";
             document.getElementById("autoSpeed").innerHTML = autoBonus + " /s";
         } else {
@@ -149,9 +139,9 @@
         setInterval(() => {
             if (autoBonus > 0) {
                 amount += autoBonus;
-                el.innerHTML = amount; // Uzreiz parāda jauno summu
+                el.innerHTML = amount; /* isti nezinu kas dara */
             }
-        }, 1000); // 1000 milisekundes = 1 sekunde
+        }, 1000); /* 1 sek */
     });
 </script>
 </html>
